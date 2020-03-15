@@ -6,7 +6,7 @@ import { createStage } from '../gameHelpers'
 import { StyledTetrisWrapper, StyledTetris} from './styles/StyledTetris';
 
 //custom hooks
-import {usePlayer } from '../hooks/usePlayer';
+import {usePlayer} from '../hooks/usePlayer';
 import {useStage } from '../hooks/useStage';
 
 //components
@@ -20,8 +20,8 @@ const Tetris = () => {
     const [gameOver, setGameOver] = useState(false);
 
     //custom hooks
-    const [player] = usePlayer();
-    const [stage, setStage] = useStage(player);
+    const [player, updatePlayerPos, resetPlayer] = usePlayer();
+    const [stage, setStage] = useStage(player, resetPlayer);
 
     console.log('re-render')
 
@@ -69,7 +69,7 @@ const Tetris = () => {
                         <Display text= "Level" />
                     </div>
                     )}
-                    <StartButton onClick= {startGame}/>
+                    <StartButton callback= {startGame}/>
                 </aside>
             </StyledTetris>
         </StyledTetrisWrapper>
